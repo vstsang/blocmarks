@@ -1,7 +1,21 @@
-<h1>Blocmarks</h1>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Asap+Condensed" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Asap Condensed', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Welcome <%= @email %>!</p>
 
-<p>Welcome <%= @email %>!</p>
+    <p>Thank you for registering</p>
 
-<p>You can confirm your account email through the link below:</p>
+    <p>You can confirm your account email through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+    <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+    <strong>Blocmarks</strong>
+  </body>
+</html>
