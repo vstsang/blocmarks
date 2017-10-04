@@ -1,2 +1,16 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Blocmarks</h1>
+
+<div>
+  <div class="jumbotron">
+    <h3>Bookmark URLs via email</h3>
+    <h4>See other user's bookmarks and maintain a personal index of categorized bookmarks.</h4>
+    <br>
+    <% unless user_signed_in? %>
+      <h4>
+        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary btn-sm' %>
+        or
+        <%= link_to "Sign in", new_user_session_path, class: 'btn btn-primary btn-sm' %>
+      </h4>
+    <% end %>
+  </div>
+</div>
