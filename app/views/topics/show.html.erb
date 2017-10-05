@@ -1,11 +1,13 @@
 <br>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="page-header topic-title col-md-6">
       <h2>
         <%= @topic.title %>
-        <%= link_to "Edit topic", edit_topic_path(@topic.id), class: 'btn btn-success' %>
-        <%= link_to "Delete topic", @topic, method: :delete, class: 'btn btn-danger', data: {confirm: "Delete \"#{@topic.title}?\""} %>
+        <div class="pull-right btn-group">
+          <%= link_to "Edit topic", edit_topic_path(@topic.id), class: 'btn btn-success' %>
+          <%= link_to "Delete topic", @topic, method: :delete, class: 'btn btn-danger', data: {confirm: "Delete \"#{@topic.title}?\""} %>
+        </div>
       </h2>
     </div>
   </div>
