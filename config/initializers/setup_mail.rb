@@ -1,3 +1,5 @@
+=begin
+#Sendgrid configuratoin
 if Rails.env.development?
   address = 'localhost'
   port = '1025'
@@ -18,3 +20,4 @@ if Rails.env.development? || Rails.env.production?
     enable_starttls_auto: true
   }
 end
+=end
