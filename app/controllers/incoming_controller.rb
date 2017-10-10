@@ -4,6 +4,8 @@ class IncomingController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
+    puts "Here is body-plain: #{params["body-plain"]}"
+
     # Check if user is nil, if so, create and save a new user with random password
     if User.where(email: params[:sender]).empty?
       User.create!(
