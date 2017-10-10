@@ -19,7 +19,7 @@ class IncomingController < ApplicationController
 
     # Check if the topic is nil, if so, create and save a new topic
     if Topic.where(title: params[:subject]).empty?
-      Topic.create!(
+      @topic = Topic.create!(
         title: params[:subject],
         user_id: User.where(email: params[:sender]).pluck(:id).first
       )
