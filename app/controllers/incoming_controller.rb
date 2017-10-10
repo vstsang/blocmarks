@@ -4,15 +4,6 @@ class IncomingController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
-    # Find the user by using params[:sender]
-    puts "Sender is #{params[:sender]}"
-
-    # Find the topic by using params[:subject]
-    puts "Subject is #{params[:subject]}"
-
-    # Assign the url to a variable after retreiving it from params["body-plain"]
-    puts "Body is #{params["body-plain"]}"
-
     # Check if user is nil, if so, create and save a new user with random password
     if User.where(email: params[:sender]).empty?
       User.create!(
@@ -22,8 +13,8 @@ class IncomingController < ApplicationController
       )
 
       # Reset password after generating new user random password
-      email_user_id = User.where(email: params[:sender]).pluck(:id)
-      User.email_user_id.send_reset_password_instructions
+      email_user_id = User.where(email: params[:sender]).pluck(:id).first
+      User.find(email_user_id).send_reset_password_instructions
     end
 
 
@@ -31,7 +22,7 @@ class IncomingController < ApplicationController
     if Topic.where(title: params[:subject]).empty?
       Topic.create!(
         title: params[:subject],
-        user_id: User.where(email: params[:sender]).pluck(:id)
+        user_id: User.where(email: params[:sender]).pluck(:id).first
       )
     else
       @topic = Topic.where(title: params[:subject])
