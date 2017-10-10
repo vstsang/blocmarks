@@ -24,7 +24,7 @@ class IncomingController < ApplicationController
 
     # Reset password after generating new user random password
     email_user_id = User.where(email: params[:sender]).pluck(:id)
-    User.email_user_id.send_reset_password_instructions
+    User.find(email_user_id.first).send_reset_password_instructions
 
     # Check if the topic is nil, if so, create and save a new topic
     if Topic.where(title: params[:subject]).empty?
