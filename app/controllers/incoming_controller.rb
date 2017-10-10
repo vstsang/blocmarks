@@ -5,13 +5,13 @@ class IncomingController < ApplicationController
 
   def create
     # Find the user by using params[:sender]
-    params[:sender]
+    puts "Sender is #{params[:sender]}"
 
     # Find the topic by using params[:subject]
-    params[:subject]
+    puts "Subject is #{params[:subject]}"
 
     # Assign the url to a variable after retreiving it from params["body-plain"]
-    params["body-plain"]
+    puts "Body is #{params["body-plain"]}"
 
     # Check if user is nil, if so, create and save a new user with random password
     if User.where(email: params[:sender]).empty?
