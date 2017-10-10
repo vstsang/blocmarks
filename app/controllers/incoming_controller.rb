@@ -17,7 +17,7 @@ class IncomingController < ApplicationController
     if User.where(email: params[:sender]).empty?
       User.create!(
         email: params[:sender],
-        password: pass_length(8),
+        password: random_password(8),
         role: 0
       )
     end
