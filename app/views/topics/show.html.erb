@@ -1,7 +1,7 @@
 <br>
 <div class="container">
   <div class="row">
-    <div class="page-header topic-title col-md-6">
+    <div class="topic-title col-md-6">
       <h2>
         <%= @topic.title %>
         <div class="pull-right btn-group">
@@ -11,7 +11,7 @@
       </h2>
     </div>
   </div>
-  <div class="row">
+  <div class="row bookmark-body ">
     <% @topic.bookmarks.each do |bookmark| %>
       <div class="col-md-4">
         <%= link_to bookmark.url, bookmark.url %>

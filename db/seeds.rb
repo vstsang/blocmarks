@@ -18,7 +18,7 @@ end
 
   rand(4..8).times do
     @topic.bookmarks.create!(
-      url: Faker::Internet.url,
+      url: Faker::Internet.url
     )
   end
 
