@@ -11,7 +11,7 @@ class IncomingController < ApplicationController
     params[:subject]
 
     # Assign the url to a variable after retreiving it from params["body-plain"]
-    params[:body-plain]
+    params["body-plain"]
 
     # Check if user is nil, if so, create and save a new user with random password
     if User.where(email: params[:sender]).empty?
@@ -38,7 +38,7 @@ class IncomingController < ApplicationController
 
     # Now that you're sure you have a valid user and topic, build and save a new bookmark
     @bookmark = @topic.bookmarks.new
-    @bookmark.url = params[:body-plain]
+    @bookmark.url = params["body-plain"]
 
     head 200
   end
