@@ -17,7 +17,6 @@ class IncomingController < ApplicationController
       User.find(email_user_id).send_reset_password_instructions
     end
 
-
     # Check if the topic is nil, if so, create and save a new topic
     if Topic.where(title: params[:subject]).empty?
       Topic.create!(
@@ -25,7 +24,7 @@ class IncomingController < ApplicationController
         user_id: User.where(email: params[:sender]).pluck(:id).first
       )
     else
-      @topic = Topic.where(title: params[:subject])
+      @topic = Topic.where(title: params[:subject]).first
     end
 
     # Now that you're sure you have a valid user and topic, build and save a new bookmark
