@@ -31,7 +31,7 @@ class IncomingController < ApplicationController
 
     # Now that you're sure you have a valid user and topic, build and save a new bookmark
     @topic.bookmarks.create!(
-      url: params["body-plain"]
+      url: params["body-plain"].strip
     )
 
     head 200
