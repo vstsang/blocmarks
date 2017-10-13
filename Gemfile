@@ -7,7 +7,6 @@ gem 'rails', '4.2.5'
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'faker'
 end
 
 group :development do
@@ -24,13 +23,15 @@ gem 'figaro'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'pundit'
+gem 'embedly'
+gem 'friendly_id', '~> 5.1.0'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
   gem 'spring'
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda'
-  gem 'faker'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'pry-rails'
   gem 'mailcatcher'
