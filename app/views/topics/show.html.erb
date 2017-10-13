@@ -4,10 +4,12 @@
     <div class="topic-title col-md-6">
       <h2>
         <%= @topic.title %>
-        <div class="pull-right btn-group">
-          <%= link_to "Edit topic", edit_topic_path(@topic.id), class: 'btn btn-success' %>
-          <%= link_to "Delete topic", @topic, method: :delete, class: 'btn btn-danger', data: {confirm: "Delete \"#{@topic.title}?\""} %>
-        </div>
+        <% if @topic.user == current_user %>
+          <div class="pull-right btn-group">
+            <%= link_to "Edit topic", edit_topic_path(@topic.id), class: 'btn btn-success' %>
+            <%= link_to "Delete topic", @topic, method: :delete, class: 'btn btn-danger', data: {confirm: "Delete \"#{@topic.title}?\""} %>
+          </div>
+        <% end %>
       </h2>
     </div>
   </div>
@@ -15,10 +17,12 @@
     <% @topic.bookmarks.each do |bookmark| %>
       <div class="col-md-4">
         <%= link_to bookmark.url, bookmark.url %>
-        <div class="pull-right btn-group btn-group-xs">
-          <%= link_to "Edit", edit_topic_bookmark_path(@topic, bookmark), class: 'btn btn-default' %>
-          <%= link_to "Delete", [@topic, bookmark], method: :delete, class: 'btn btn-default', data: {confirm: "Delete \"#{bookmark.url}?\""} %>
-        </div>
+        <% if bookmark.topic.user == current_user %>
+          <div class="pull-right btn-group btn-group-xs">
+            <%= link_to "Edit", edit_topic_bookmark_path(@topic, bookmark), class: 'btn btn-default' %>
+            <%= link_to "Delete", [@topic, bookmark], method: :delete, class: 'btn btn-default', data: {confirm: "Delete \"#{bookmark.url}?\""} %>
+          </div>
+        <% end %>
       </div>
     <% end %>
       <div class="col-md-4">
