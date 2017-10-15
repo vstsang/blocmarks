@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/index'
+
   devise_for :users
 
   resources :topics do
