@@ -21,5 +21,11 @@ end
       url: Faker::Internet.url
     )
   end
+end
 
+(1..(Bookmark.count*(1)).round).each do
+  Like.create!(
+    user_id: rand(1..8),
+    bookmark_id: rand(1..(Bookmark.count))
+  )
 end

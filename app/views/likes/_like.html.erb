@@ -1,0 +1,11 @@
+<% if policy(Like.new).create? %>
+  <% if like = current_user.liked(bookmark) %>
+    <%= link_to [bookmark.topic, bookmark, like], class: 'btn btn-default', method: :delete do %>
+      <i class="glyphicon glyphicon glyphicon-thumbs-down"> </i>&nbsp; Unlike
+    <% end %>
+  <% else %>
+    <%= link_to [bookmark.topic, bookmark, Like.new], class: 'btn btn-group btn-default', method: :post do %>
+      <i class="glyphicon glyphicon glyphicon-thumbs-up"> </i>&nbsp; Like
+    <% end %>
+  <% end %>
+<% end %>
