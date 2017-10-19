@@ -17,8 +17,10 @@
         <%= link_to bookmark.url, bookmark.url %>
         <div class="pull-right btn-group btn-group-xs">
           <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
-          <%= link_to "Edit", edit_topic_bookmark_path(@topic, bookmark), class: 'btn btn-default' %>
-          <%= link_to "Delete", [@topic, bookmark], method: :delete, class: 'btn btn-default', data: {confirm: "Delete \"#{bookmark.url}?\""} %>
+          <% if bookmark.topic.user == current_user %>
+            <%= link_to "Edit", edit_topic_bookmark_path(@topic, bookmark), class: 'btn btn-default' %>
+            <%= link_to "Delete", [@topic, bookmark], method: :delete, class: 'btn btn-default', data: {confirm: "Delete \"#{bookmark.url}?\""} %>
+          <% end %>
         </div>
       </div>
     <% end %>
