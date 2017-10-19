@@ -35,8 +35,6 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @topic.title = params[:topic][:title]
 
-    #authorize @topic
-
     if @topic.save
       flash[:notice] = "Topic was updated."
       redirect_to @topic
