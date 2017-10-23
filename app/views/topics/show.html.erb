@@ -4,12 +4,10 @@
     <div class="topic-title col-md-6">
       <h2>
         <%= @topic.title %>
-        <% if @topic.user == current_user %>
-          <div class="pull-right btn-group">
-            <%= link_to "Edit topic", edit_topic_path(@topic.id), class: 'btn btn-success' %>
-            <%= link_to "Delete topic", @topic, method: :delete, class: 'btn btn-danger', data: {confirm: "Delete \"#{@topic.title}?\""} %>
-          </div>
-        <% end %>
+        <div class="pull-right btn-group">
+          <%= link_to "Edit topic", edit_topic_path(@topic.id), class: 'btn btn-success' %>
+          <%= link_to "Delete topic", @topic, method: :delete, class: 'btn btn-danger', data: {confirm: "Delete \"#{@topic.title}?\""} %>
+        </div>
       </h2>
     </div>
   </div>
@@ -19,7 +17,7 @@
         <%= link_to bookmark.url, bookmark.url %>
         <div class="pull-right btn-group btn-group-xs">
           <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
-          <% if bookmark.topic.user == current_user %>
+          <% if bookmark.user == current_user %>
             <%= link_to "Edit", edit_topic_bookmark_path(@topic, bookmark), class: 'btn btn-default' %>
             <%= link_to "Delete", [@topic, bookmark], method: :delete, class: 'btn btn-default', data: {confirm: "Delete \"#{bookmark.url}?\""} %>
           <% end %>

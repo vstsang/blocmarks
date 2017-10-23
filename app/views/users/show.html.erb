@@ -1,0 +1,73 @@
+<div class="center">
+  <h2>My Blocmarks</h2>
+</div>
+
+<div class="container">
+  <% @topics.each do |topic| %>
+    <% if (topic.bookmarks & @user_bookmarks).present? %>
+      <div class="row">
+        <div class="topic-title col-md-6">
+            <h2>
+              <%= topic.title %>
+              <div class="pull-right btn-group">
+                <%= link_to "Edit topic", edit_topic_path(topic.id), class: 'btn btn-success' %>
+                <%= link_to "Delete topic", topic, method: :delete, class: 'btn btn-danger', data: {confirm: "Delete \"#{topic.title}?\""} %>
+              </div>
+            </h2>
+          </div>
+      </div>
+      <div class="row bookmark-body ">
+        <% @user_bookmarks.where(topic: topic).each do |u_bookmark| %>
+          <div class="col-md-4">
+            <%= link_to u_bookmark.url, u_bookmark.url %>
+            <div class="pull-right btn-group btn-group-xs">
+              <%= render partial: 'likes/like', locals: { bookmark: u_bookmark } %>
+              <% if u_bookmark.user == current_user %>
+                <%= link_to "Edit", edit_topic_bookmark_path(topic, u_bookmark), class: 'btn btn-default' %>
+                <%= link_to "Delete", [topic, u_bookmark], method: :delete, class: 'btn btn-default', data: {confirm: "Delete \"#{u_bookmark.url}?\""} %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<hr>
+
+<div class="center">
+  <h2>Liked Blocmarks</h2>
+</div>
+
+<div class="container">
+  <% @topics.each do |topic| %>
+    <% if (topic.bookmarks & @liked_bookmarks).present? %>
+      <div class="row">
+        <div class="topic-title col-md-6">
+            <h2>
+              <%= topic.title %>
+              <div class="pull-right btn-group">
+                <%= link_to "Edit topic", edit_topic_path(topic.id), class: 'btn btn-success' %>
+                <%= link_to "Delete topic", topic, method: :delete, class: 'btn btn-danger', data: {confirm: "Delete \"#{topic.title}?\""} %>
+              </div>
+            </h2>
+          </div>
+      </div>
+      <div class="row bookmark-body ">
+        <% @liked_bookmarks.where(topic: topic).each do |l_bookmark| %>
+          <div class="col-md-4">
+            <%= link_to l_bookmark.url, l_bookmark.url %>
+            <div class="pull-right btn-group btn-group-xs">
+              <%= render partial: 'likes/like', locals: { bookmark: l_bookmark } %>
+              <% if l_bookmark.user == current_user %>
+                <%= link_to "Edit", edit_topic_bookmark_path(topic, l_bookmark), class: 'btn btn-default' %>
+                <%= link_to "Delete", [topic, l_bookmark], method: :delete, class: 'btn btn-default', data: {confirm: "Delete \"#{l_bookmark.url}?\""} %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

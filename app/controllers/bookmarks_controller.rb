@@ -14,6 +14,7 @@ class BookmarksController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @bookmark = @topic.bookmarks.new
     @bookmark.url = params[:bookmark][:url]
+    @bookmark.user = current_user
 
     if @bookmark.save
       flash[:notice] = "Bookmark was saved."
@@ -27,18 +28,20 @@ class BookmarksController < ApplicationController
   def edit
     @topic = Topic.find(params[:topic_id])
     @bookmark = Bookmark.find(params[:id])
+    session[:return_to] ||= request.referer
   end
 
   def update
     @topic = Topic.find(params[:topic_id])
     @bookmark = Bookmark.find(params[:id])
     @bookmark.url = params[:bookmark][:url]
+    @bookmark.user = current_user
 
     authorize @bookmark
 
     if @bookmark.save
       flash[:notice] = "Bookmark was updated."
-      redirect_to [@bookmark.topic]
+      redirect_to session.delete(:return_to)
     else
       flash.now[:alert] = "There was an error saving the bookmark. Please try again."
       render :edit
@@ -52,7 +55,7 @@ class BookmarksController < ApplicationController
 
     if @bookmark.destroy
       flash[:notice] = "\"#{@bookmark.url}\" was deleted successfully."
-      redirect_to @bookmark.topic
+      redirect_to :back
     else
       flash.now[:alert] = "There was an error deleting the bookmark."
       render :show

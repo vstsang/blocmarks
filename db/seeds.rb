@@ -12,20 +12,20 @@ end
 
 5.times do
   @topic = Topic.create!(
-    title: Faker::StarWars.character,
-    user_id: rand(User.count)
+    title: Faker::ProgrammingLanguage.name
   )
 
-  rand(4..8).times do
+  rand(8..16).times do
     @topic.bookmarks.create!(
-      url: Faker::Internet.url
+      url: Faker::Internet.url,
+      user_id: rand(1..(User.count))
     )
   end
 end
 
 (1..(Bookmark.count*(1)).round).each do
   Like.create!(
-    user_id: rand(1..8),
+    user_id: rand(1..4),
     bookmark_id: rand(1..(Bookmark.count))
   )
 end

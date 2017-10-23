@@ -1,15 +1,10 @@
 class LikePolicy < ApplicationPolicy
-  def initialize(user, like)
-    @user = user
-    @like = like
-  end
-
   def create?
     user.present?
   end
 
   def destroy?
-    user.present? && (@like.user == user)
+    user.present? && (record.user == user)
   end
 
   class Scope < Scope

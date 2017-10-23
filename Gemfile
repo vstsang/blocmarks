@@ -25,7 +25,7 @@ gem 'devise'
 gem 'pundit'
 gem 'embedly'
 gem 'friendly_id', '~> 5.1.0'
-gem 'faker'
+gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 
 group :development, :test do
   gem 'byebug'
