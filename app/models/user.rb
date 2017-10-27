@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+
   has_many :bookmark
   has_many :likes, dependent: :destroy
 
@@ -6,6 +8,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
+  friendly_id :email, use: :slugged
 
   enum role: [:standard, :premium, :admin]
 
