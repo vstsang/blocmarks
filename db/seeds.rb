@@ -1,5 +1,19 @@
 User.create!(email: 'standard@blocmarks.com', password: 'password', role: 0, confirmed_at: Time.now.utc)
 User.create!(email: 'admin@blocmarks.com', password: 'password', role: 2, confirmed_at: Time.now.utc)
+sites = [
+  "http://github.com",
+  "http://cnn.com",
+  "http://slashdot.com",
+  "http://bloc.io",
+  "http://microsoft.com",
+  "http://google.com",
+  "http://youtube.com",
+  "http://wikipedia.org",
+  "http://facebook.com",
+  "http://piedpiper.com",
+  "http://twitter.com",
+  "http://amazon.com"
+]
 
 5.times do
   User.create!(
@@ -15,9 +29,9 @@ end
     title: Faker::ProgrammingLanguage.name
   )
 
-  rand(8..16).times do
+  rand(3..(sites.count)).times do
     @topic.bookmarks.create!(
-      url: Faker::Internet.url,
+      url: sites[rand(sites.count)],
       user_id: rand(1..(User.count))
     )
   end

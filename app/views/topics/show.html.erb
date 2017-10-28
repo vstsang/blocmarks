@@ -1,3 +1,4 @@
+<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 <br>
 <div class="container">
   <div class="row">
@@ -14,7 +15,7 @@
   <div class="row bookmark-body ">
     <% @topic.bookmarks.each do |bookmark| %>
       <div class="col-md-4">
-        <%= link_to bookmark.url, bookmark.url %>
+        <%= link_to bookmark.url, bookmark.url, class: 'embedly-card' %>
         <div class="pull-right btn-group btn-group-xs">
           <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
           <% if bookmark.user == current_user %>
