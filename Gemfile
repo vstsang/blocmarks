@@ -23,7 +23,6 @@ gem 'figaro'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'pundit'
-gem 'embedly'
 gem 'friendly_id', '~> 5.1.0'
 gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 
